@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Illinois Coal Association | Members</title>
+  <meta name="description" content="Illinois Coal Association membership directory — company and associate members." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="Illinois Coal Association Home">
+        <div class="logo" aria-hidden="true">
+          <img src="https://illinoiscoal.org/wp-content/uploads/2021/02/cropped-ICAlogo_2020_orange-768x362-1-1.png"
+               alt="Illinois Coal Association Logo" onerror="this.style.display='none'">
+        </div>
+        <div class="name">
+          <strong>Illinois Coal Association</strong>
+          <span>Incorporated under Illinois law in 1878</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a class="active" href="members.html">Members</a>
+        <a href="resources.html">Resources</a>
+        <a href="events.html">Events</a>
+        <a href="join.html">Join Us</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn link" href="tel:12175282092" title="Call">(217) 528-2092</a>
+        <a class="btn primary" href="join.html">Join Us</a>
+        <button class="hamburger" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+<!-- PAGE HEADER (PREMIUM) -->
+<section class="section tight members-hero">
+  <div class="container">
+
+    <div class="members-hero-top reveal">
+      <div>
+        <div class="kicker">Membership Directory</div>
+        <h1 class="members-title">Illinois Coal Association Members</h1>
+        <p class="members-sub">
+          Browse company and associate members. Search by company name, mine, city, state, or contact.
+        </p>
+      </div>
+
+      <div class="members-quick">
+        <div class="members-chip">
+          <span class="dot"></span>
+          <span><strong id="resultsCount">0</strong> results</span>
+        </div>
+        <a class="btn primary" href="join.html">Join ICA</a>
+      </div>
+    </div>
+
+    <!-- Controls Card -->
+    <div class="members-controls card reveal">
+      <div class="card-inner">
+
+        <div class="controls-grid">
+
+          <!-- Search -->
+          <div class="control">
+            <label class="tiny" for="memberSearch"><strong>Search members</strong></label>
+
+            <div class="input-wrap">
+              <span class="input-ic">🔎</span>
+              <input id="memberSearch" class="input input-lg"
+                     placeholder="Search (e.g., Knight Hawk, St. Louis, mine, email...)">
+              <button class="clear-btn" id="clearSearch" type="button" aria-label="Clear search">✕</button>
+            </div>
+
+            <div class="tiny hint">Tip: Try “Hamilton” or “Marissa” to filter fast.</div>
+          </div>
+
+          <!-- Category -->
+          <div class="control">
+            <label class="tiny"><strong>Category</strong></label>
+
+            <div class="filter-tabs pill-tabs" role="tablist" aria-label="Member category">
+              <button class="tab active" data-filter="all" type="button">
+                All
+              </button>
+              <button class="tab" data-filter="company" type="button">
+                Company
+              </button>
+              <button class="tab" data-filter="associate" type="button">
+                Associate
+              </button>
+            </div>
+
+            <div class="tiny hint">Switch tabs to narrow results.</div>
+          </div>
+
+          <!-- Results / Note -->
+          <div class="control">
+            <label class="tiny"><strong>Directory</strong></label>
+
+            <div class="members-note">
+              <div class="members-note-ic">🏛️</div>
+              <div>
+                <div style="font-weight:800;">Official ICA directory</div>
+                <div class="tiny" style="margin-top:4px; opacity:.85;">
+                  Want your listing updated? Use the Join page or contact ICA.
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- MEMBERS GRID -->
+  <section class="section" style="padding-top:24px;">
+    <div class="container">
+      <div class="members-grid" id="membersGrid">
+
+        <!-- COMPANY MEMBERS -->
+        <article class="member-card card reveal" data-category="company"
+                 data-search="White County Coal LLC Pattiki Mine Alliance Coal Carmi IL 62821 PJ Howard Tony Stewart arlp.com">
+          <div class="card-inner">
+            <div class="member-top">
+              <div class="member-logo">
+                <img src="https://illinoiscoal.org/wp-content/uploads/2021/02/tmp_455_11-12-2010_15911_-1.gif"
+                     alt="Alliance Coal logo" onerror="this.style.display='none'">
+                <div class="member-logo-fallback">AC</div>
+              </div>
+              <div class="member-title">
+                <h3>White County Coal, LLC Pattiki Mine</h3>
+                <div class="pill pill-soft"><span class="dot"></span>Company Member</div>
+              </div>
+            </div>
+
+            <div class="member-meta">
+              <div class="meta-row"><span class="meta-ic">📍</span><span>P.O. Box 457 • 1525 County Road 1300 North • Carmi, IL 62821</span></div>
+              <div class="meta-row"><span class="meta-ic">🌐</span><a href="https://www.arlp.com" target="_blank" rel="noopener">www.arlp.com</a></div>
+              <div class="meta-row"><span class="meta-ic">👤</span><span>Contacts: PJ Howard • Tony Stewart</span></div>
+            </div>
+
+            <div class="member-actions">
+              <a class="btn" href="https://www.arlp.com" target="_blank" rel="noopener">Website</a>
+              <a class="btn secondary" href="mailto:PJ.Howard@arlp.com">Email</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="member-card card reveal" data-category="company"
+                 data-search="Hamilton County Coal LLC Alliance Coal Dahlgren IL 62828 618-643-5500 arlp.com">
+          <div class="card-inner">
+            <div class="member-top">
+              <div class="member-logo">
+                <img src="https://illinoiscoal.org/wp-content/uploads/2021/02/tmp_455_11-12-2010_15911_-1.gif"
+                     alt="Alliance Coal logo" onerror="this.style.display='none'">
+                <div class="member-logo-fallback">AC</div>
+              </div>
+              <div class="member-title">
+                <h3>Hamilton County Coal, LLC</h3>
+                <div class="pill pill-soft"><span class="dot"></span>Company Member</div>
+              </div>
+            </div>
+
+            <div class="member-meta">
+              <div class="meta-row"><span class="meta-ic">📍</span><span>18033 County Road 500 East • Dahlgren, IL 62828</span></div>
+              <div class="meta-row"><span class="meta-ic">☎️</span><span>618-643-5500</span></div>
+              <div class="meta-row"><span class="meta-ic">🌐</span><a href="https://www.arlp.com" target="_blank" rel="noopener">www.arlp.com</a></div>
+            </div>
+
+            <div class="member-actions">
+              <a class="btn" href="https://www.arlp.com" target="_blank" rel="noopener">Website</a>
+              <a class="btn secondary" href="join.html">Join / Update Listing</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="member-card card reveal" data-category="company"
+                 data-search="Foresight Energy St Louis MO 63102 coalsalesinfo@foresight.com www.foresight.com">
+          <div class="card-inner">
+            <div class="member-top">
+              <div class="member-logo">
+                <img src="https://illinoiscoal.org/wp-content/uploads/2021/02/Foresight-Logo.jpg"
+                     alt="Foresight Energy logo" onerror="this.style.display='none'">
+                <div class="member-logo-fallback">FE</div>
+              </div>
+              <div class="member-title">
+                <h3>Foresight Energy</h3>
+                <div class="pill pill-soft"><span class="dot"></span>Company Member</div>
+              </div>
+            </div>
+
+            <div class="member-meta">
+              <div class="meta-row"><span class="meta-ic">📍</span><span>211 N. Broadway, Ste. 2600 • St. Louis, MO 63102</span></div>
+              <div class="meta-row"><span class="meta-ic">🌐</span><a href="http://www.foresight.com/" target="_blank" rel="noopener">www.foresight.com</a></div>
+              <div class="meta-row"><span class="meta-ic">✉️</span><a href="mailto:coalsalesinfo@foresight.com">coalsalesinfo@foresight.com</a></div>
+            </div>
+
+            <div class="member-actions">
+              <a class="btn" href="http://www.foresight.com/" target="_blank" rel="noopener">Website</a>
+              <a class="btn secondary" href="mailto:coalsalesinfo@foresight.com">Email</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="member-card card reveal" data-category="company"
+                 data-search="Knight Hawk Coal LLC Perry IL 62272 618-426-3662 www.knighthawkcoal.com">
+          <div class="card-inner">
+            <div class="member-top">
+              <div class="member-logo">
+                <img src="https://illinoiscoal.org/wp-content/uploads/2021/02/knighthawk_logo.png "
+                     alt="Knight Hawk Coal logo" onerror="this.style.display='none'">
+                <div class="member-logo-fallback">KH</div>
+              </div>
+              <div class="member-title">
+                <h3>Knight Hawk Coal, LLC</h3>
+                <div class="pill pill-soft"><span class="dot"></span>Company Member</div>
+              </div>
+            </div>
+
+            <div class="member-meta">
+              <div class="meta-row"><span class="meta-ic">📍</span><span>500 Cutler-Trico Road • Percy, IL 62272</span></div>
+              <div class="meta-row"><span class="meta-ic">☎️</span><span>618-426-3662</span></div>
+              <div class="meta-row"><span class="meta-ic">🌐</span><a href="https://www.knighthawkcoal.com" target="_blank" rel="noopener">www.knighthawkcoal.com</a></div>
+            </div>
+
+            <div class="member-actions">
+              <a class="btn" href="https://www.knighthawkcoal.com" target="_blank" rel="noopener">Website</a>
+              <a class="btn secondary" href="join.html">Join / Update Listing</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="member-card card reveal" data-category="company"
+                 data-search="Knight Hawk Coal LLC Viper Mine Williamsville IL 62693 217-566-3000 www.knighthawkcoal.com">
+          <div class="card-inner">
+            <div class="member-top">
+              <div class="member-logo">
+                <img src="https://illinoiscoal.org/wp-content/uploads/2021/02/knighthawk_logo.png"
+                     alt="Knight Hawk Coal logo" onerror="this.style.display='none'">
+                <div class="member-logo-fallback">KH</div>
+              </div>
+              <div class="member-title">
+                <h3>Knight Hawk Coal, LLC — Viper Mine</h3>
+                <div class="pill pill-soft"><span class="dot"></span>Company Member</div>
+              </div>
+            </div>
+
+            <div class="member-meta">
+              <div class="meta-row"><span class="meta-ic">📍</span><span>5945 Lester Road • Williamsville, IL 62693</span></div>
+              <div class="meta-row"><span class="meta-ic">☎️</span><span>217-566-3000</span></div>
+              <div class="meta-row"><span class="meta-ic">🌐</span><a href="https://www.knighthawkcoal.com" target="_blank" rel="noopener">www.knighthawkcoal.com</a></div>
+            </div>
+
+            <div class="member-actions">
+              <a class="btn" href="https://www.knighthawkcoal.com" target="_blank" rel="noopener">Website</a>
+              <a class="btn secondary" href="join.html">Join / Update Listing</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="member-card card reveal" data-category="company"
+                 data-search="Peabody Energy St Louis MO 63101 314-342-3400 www.peabodyenergy.com">
+          <div class="card-inner">
+            <div class="member-top">
+              <div class="member-logo">
+                <img src="https://illinoiscoal.org/wp-content/uploads/2021/02/Peabody_logo_RGB.png"
+                     alt="Peabody Energy logo" onerror="this.style.display='none'">
+                <div class="member-logo-fallback">PE</div>
+              </div>
+              <div class="member-title">
+                <h3>Peabody Energy</h3>
+                <div class="pill pill-soft"><span class="dot"></span>Company Member</div>
+              </div>
+            </div>
+
+            <div class="member-meta">
+              <div class="meta-row"><span class="meta-ic">📍</span><span>701 Market Street • St. Louis, MO 63101</span></div>
+              <div class="meta-row"><span class="meta-ic">☎️</span><span>314-342-3400</span></div>
+              <div class="meta-row"><span class="meta-ic">🌐</span><a href="https://www.peabodyenergy.com" target="_blank" rel="noopener">www.peabodyenergy.com</a></div>
+            </div>
+
+            <div class="member-actions">
+              <a class="btn" href="https://www.peabodyenergy.com" target="_blank" rel="noopener">Website</a>
+              <a class="btn secondary" href="join.html">Join / Update Listing</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="member-card card reveal" data-category="company"
+                 data-search="NRP LLC Huntington WV 25705-3247 https://nrplp.com jperry@wpplp.com">
+          <div class="card-inner">
+            <div class="member-top">
+              <div class="member-logo">
+                <img src="https://illinoiscoal.org/wp-content/uploads/2021/02/nrp.jpg"
+                     alt="NRP logo" onerror="this.style.display='none'">
+                <div class="member-logo-fallback">NR</div>
+              </div>
+              <div class="member-title">
+                <h3>NRP LLC</h3>
+                <div class="pill pill-soft"><span class="dot"></span>Company Member</div>
+              </div>
+            </div>
+
+            <div class="member-meta">
+              <div class="meta-row"><span class="meta-ic">📍</span><span>5260 Irwin Road • Huntington, WV 25705-3247</span></div>
+              <div class="meta-row"><span class="meta-ic">🌐</span><a href="https://nrplp.com" target="_blank" rel="noopener">nrplp.com</a></div>
+              <div class="meta-row"><span class="meta-ic">✉️</span><a href="mailto:jperry@wpplp.com">jperry@wpplp.com</a></div>
+            </div>
+
+            <div class="member-actions">
+              <a class="btn" href="https://nrplp.com" target="_blank" rel="noopener">Website</a>
+              <a class="btn secondary" href="mailto:jperry@wpplp.com">Email</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="member-card card reveal" data-category="company"
+                 data-search="Prairie State Generating Company Marissa IL 62257 618-824-7816 www.prairiestateenergycampus.com aharre@psgc-llc.com">
+          <div class="card-inner">
+            <div class="member-top">
+              <div class="member-logo">
+                <img src="https://illinoiscoal.org/wp-content/uploads/2021/02/lolgo.png"
+                     alt="Prairie State Generating Company logo" onerror="this.style.display='none'">
+                <div class="member-logo-fallback">PS</div>
+              </div>
+              <div class="member-title">
+                <h3>Prairie State Generating Company</h3>
+                <div class="pill pill-soft"><span class="dot"></span>Company Member</div>
+              </div>
+            </div>
+
+            <div class="member-meta">
+              <div class="meta-row"><span class="meta-ic">📍</span><span>3872 County Highway 12 • Marissa, IL 62257</span></div>
+              <div class="meta-row"><span class="meta-ic">☎️</span><span>618-824-7816</span></div>
+              <div class="meta-row"><span class="meta-ic">🌐</span><a href="https://www.prairiestateenergycampus.com" target="_blank" rel="noopener">prairiestateenergycampus.com</a></div>
+              <div class="meta-row"><span class="meta-ic">✉️</span><a href="mailto:aharre@psgc-llc.com">aharre@psgc-llc.com</a></div>
+            </div>
+
+            <div class="member-actions">
+              <a class="btn" href="https://www.prairiestateenergycampus.com" target="_blank" rel="noopener">Website</a>
+              <a class="btn secondary" href="mailto:aharre@psgc-llc.com">Email</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ASSOCIATE MEMBERS (sample placeholders) -->
+        <article class="member-card card reveal" data-category="associate"
+                 data-search="Associate Member Example Equipment Services Illinois">
+          <div class="card-inner">
+            <div class="member-top">
+              <div class="member-logo">
+                <div class="member-logo-fallback">AS</div>
+              </div>
+              <div class="member-title">
+                <h3>Associate Member (Sample)</h3>
+                <div class="pill pill-soft"><span class="dot"></span>Associate Member</div>
+              </div>
+            </div>
+
+            <div class="member-meta">
+              <div class="meta-row"><span class="meta-ic">📍</span><span>Springfield, IL</span></div>
+              <div class="meta-row"><span class="meta-ic">🧩</span><span>Services, supply chain, consulting, logistics, etc.</span></div>
+            </div>
+
+            <div class="member-actions">
+              <a class="btn secondary" href="join.html">Add / Update Listing</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Empty state -->
+      <div id="emptyState" class="card" style="display:none; margin-top:16px;">
+        <div class="card-inner">
+          <div class="kicker">No results</div>
+          <h3 style="margin-top:8px; font-size:1.2rem;">No members match your search.</h3>
+          <p class="tiny" style="margin-top:8px;">Try clearing the search box or switching category.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <strong style="color:var(--text)">Illinois Coal Association</strong>
+          <p class="tiny" style="margin-top:8px">Membership directory — modern static HTML redesign.</p>
+        </div>
+        <div>
+          <strong style="color:var(--text)">Navigation</strong>
+          <div style="margin-top:10px; display:grid; gap:8px">
+            <a href="members.html">Members</a>
+            <a href="resources.html">Resources</a>
+            <a href="events.html">Events</a>
+            <a href="join.html">Join Us</a>
+          </div>
+        </div>
+        <div>
+          <strong style="color:var(--text)">Contact</strong>
+          <div style="margin-top:10px; display:grid; gap:8px">
+            <a href="tel:12175282092">(217) 528-2092</a>
+            <span class="tiny">212 S. 2nd Street, Springfield, IL 62701</span>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:18px" class="tiny">© <span id="year"></span> Illinois Coal Association • All rights reserved</div>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
+
+  <!-- Members page script -->
+  <script>
+    // Year
+    const y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
+
+    const searchInput = document.getElementById('memberSearch');
+    const grid = document.getElementById('membersGrid');
+    const cards = Array.from(grid.querySelectorAll('.member-card'));
+    const tabs = Array.from(document.querySelectorAll('.filter-tabs .tab'));
+    const countEl = document.getElementById('resultsCount');
+    const emptyState = document.getElementById('emptyState');
+
+    let activeCategory = 'all';
+
+    function normalize(s){ return (s || '').toLowerCase().trim(); }
+
+    function applyFilters(){
+      const q = normalize(searchInput.value);
+      let shown = 0;
+
+      cards.forEach(card => {
+        const cat = card.dataset.category;
+        const hay = normalize(card.dataset.search) + " " + normalize(card.textContent);
+
+        const matchCategory = (activeCategory === 'all') ? true : (cat === activeCategory);
+        const matchQuery = q ? hay.includes(q) : true;
+
+        const visible = matchCategory && matchQuery;
+        card.style.display = visible ? '' : 'none';
+        if (visible) shown++;
+      });
+
+      countEl.textContent = String(shown);
+      emptyState.style.display = shown === 0 ? '' : 'none';
+    }
+
+    tabs.forEach(t => {
+      t.addEventListener('click', () => {
+        tabs.forEach(x => x.classList.remove('active'));
+        t.classList.add('active');
+        activeCategory = t.dataset.filter;
+        applyFilters();
+      });
+    });
+const clearBtn = document.getElementById('clearSearch');
+
+function updateClear(){
+  clearBtn.style.display = searchInput.value.trim() ? 'inline-grid' : 'none';
+}
+
+clearBtn.addEventListener('click', () => {
+  searchInput.value = '';
+  searchInput.focus();
+  applyFilters();
+  updateClear();
+});
+
+searchInput.addEventListener('input', () => {
+  applyFilters();
+  updateClear();
+});
+
+updateClear();
+
+    searchInput.addEventListener('input', applyFilters);
+
+    // Initial
+    applyFilters();
+  </script>
+
+</body>
+</html>

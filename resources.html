@@ -1,0 +1,720 @@
+<!-- resources.html (FULL PAGE) - CLEAN + FIXED + NICER (v2)
+     ✅ Fixes your broken <style> nesting
+     ✅ Uses the newer "res-hero-card" + "res-filter-bar" design
+     ✅ Keeps your nav/footer and your JS data/render
+     ✅ Updates JS selectors to new buttons (.res-seg-btn)
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Illinois Coal Association | Resources</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/styles.css">
+
+  <!-- Page-specific CSS -->
+  <style>
+    /* ===== Page background ===== */
+    .page-hero-v2{
+      position:relative;
+      overflow:hidden;
+      border-bottom:1px solid rgba(0,0,0,.06);
+      background:
+        radial-gradient(900px 320px at 10% 0%, rgba(58,161,255,.10), transparent 60%),
+        radial-gradient(900px 320px at 90% 0%, rgba(245,179,1,.12), transparent 60%),
+        #fff;
+    }
+
+    /* ===== Hero Card ===== */
+    .res-hero-card{
+      display:grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap:16px;
+      border-radius: 22px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.82));
+      box-shadow: 0 18px 40px rgba(0,0,0,.10);
+    }
+    .res-hero-left{ padding: 22px 22px 18px; }
+
+    .res-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,.10);
+      background: rgba(0,0,0,.03);
+      font-weight:800;
+      color: rgba(0,0,0,.72);
+      font-size:.88rem;
+    }
+    .res-badge-dot{
+      width:10px; height:10px; border-radius:99px;
+      background: var(--accent, #F5B301);
+      box-shadow: 0 0 0 4px rgba(245,179,1,.18);
+    }
+    .res-badge-sep{ opacity:.55; }
+
+    .res-hero-title{
+      margin: 14px 0 0;
+      font-size: clamp(1.85rem, 2.8vw, 2.6rem);
+      letter-spacing:-.04em;
+      line-height:1.06;
+      color: rgba(0,0,0,.92);
+    }
+    .res-hero-sub{
+      margin-top: 10px;
+      color: rgba(0,0,0,.66);
+      line-height:1.65;
+      max-width: 720px;
+    }
+    .res-hero-actions{
+      margin-top: 14px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .res-chips{
+      margin-top: 14px;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .res-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.85);
+      font-weight:800;
+      color: rgba(0,0,0,.72);
+      font-size:.88rem;
+    }
+
+    .res-hero-right{
+      position:relative;
+      min-height: 240px;
+      background:#0b1220;
+    }
+    .res-hero-right img{
+      width:100%;
+      height:100%;
+      min-height:240px;
+      object-fit:cover;
+      opacity:.92;
+      filter:saturate(1.05) contrast(1.06);
+      transform: scale(1.02);
+    }
+    .res-hero-overlay{
+      position:absolute; inset:0;
+      background: linear-gradient(120deg, rgba(7,12,22,.70), rgba(7,12,22,.25), rgba(7,12,22,.78));
+    }
+    .res-hero-float{
+      position:absolute;
+      left:14px;
+      right:14px;
+      bottom:14px;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.10);
+      backdrop-filter: blur(10px);
+      padding: 12px 12px;
+      color:#fff;
+    }
+    .res-float-title{
+      font-weight:900;
+      letter-spacing:-.01em;
+      font-size:.95rem;
+      opacity:.95;
+    }
+    .res-float-links{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 10px;
+    }
+    .res-float-link{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.18);
+      color: rgba(255,255,255,.92);
+      font-weight:800;
+      text-decoration:none;
+    }
+    .res-float-link:hover{
+      background: rgba(0,0,0,.25);
+      color:#fff;
+    }
+
+    /* ===== Filter Bar ===== */
+    .res-filter-bar{ margin-top: 16px; }
+    .res-filter-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .9fr .7fr;
+      gap:14px;
+      align-items: end;
+    }
+    .res-control .tiny{ display:block; }
+
+    .res-search{
+      position:relative;
+      margin-top:8px;
+    }
+    .res-search-ic{
+      position:absolute;
+      left:12px;
+      top:50%;
+      transform:translateY(-50%);
+      opacity:.65;
+    }
+    .res-input{
+      padding-left:40px !important;
+      padding-right:44px !important;
+      height:48px;
+    }
+    .res-clear{
+      position:absolute;
+      right:10px;
+      top:50%;
+      transform:translateY(-50%);
+      width:32px; height:32px;
+      border-radius:10px;
+      border:1px solid rgba(0,0,0,.10);
+      background: rgba(0,0,0,.03);
+      cursor:pointer;
+      display:none;
+    }
+    .res-clear:hover{ background: rgba(0,0,0,.06); }
+
+    .res-hint{
+      margin-top:8px;
+      opacity:.85;
+      color: rgba(0,0,0,.60);
+    }
+
+    .res-seg{
+      margin-top:8px;
+      display:flex;
+      gap:6px;
+      flex-wrap:wrap;
+      padding:6px;
+      border-radius: 999px;
+      border:1px solid rgba(0,0,0,.10);
+      background: rgba(0,0,0,.03);
+    }
+    .res-seg-btn{
+      border:1px solid transparent;
+      background: transparent;
+      padding:10px 14px;
+      border-radius: 999px;
+      font-weight:900;
+      color: rgba(0,0,0,.72);
+      cursor:pointer;
+    }
+    .res-seg-btn:hover{ background: rgba(0,0,0,.04); }
+    .res-seg-btn.active{
+      background:#fff;
+      border-color: rgba(0,0,0,.10);
+      box-shadow: 0 12px 25px rgba(0,0,0,.10);
+      color: rgba(0,0,0,.90);
+    }
+
+    .res-results{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+    }
+    .res-count{
+      margin-top:8px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.85);
+      font-weight:900;
+      color: rgba(0,0,0,.78);
+      width: fit-content;
+    }
+    .res-count-dot{
+      width:10px; height:10px; border-radius:99px;
+      background: var(--accent2, #3AA1FF);
+      box-shadow: 0 0 0 4px rgba(58,161,255,.14);
+    }
+
+    /* ===== Lists (cards) ===== */
+    .resources-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:18px;
+      margin-top:18px;
+    }
+
+    .section-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:12px;
+    }
+    .section-head h2{
+      margin:0;
+      font-size: 1.3rem;
+      letter-spacing:-.02em;
+    }
+    .count-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.85);
+      font-weight:800;
+      font-size:.92rem;
+      width: fit-content;
+    }
+
+    .link-list{
+      display:grid;
+      gap:10px;
+      margin-top:12px;
+    }
+    .link-card{
+      border:1px solid rgba(0,0,0,.10);
+      border-radius:16px;
+      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.78));
+      padding:12px 12px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+      transition: .18s ease;
+      text-decoration:none;
+    }
+    .link-card:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 16px 30px rgba(0,0,0,.10);
+      border-color: rgba(0,0,0,.14);
+    }
+    .link-meta{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .link-ic{
+      width:38px; height:38px;
+      border-radius:14px;
+      border:1px solid rgba(0,0,0,.10);
+      background: rgba(245,179,1,.14);
+      display:grid;
+      place-items:center;
+      flex: 0 0 auto;
+      font-size: 1rem;
+    }
+    .link-title{
+      font-weight:900;
+      letter-spacing:-.01em;
+      color: rgba(0,0,0,.88);
+      line-height:1.25;
+    }
+    .link-sub{
+      margin-top:4px;
+      color: rgba(0,0,0,.62);
+      font-size: .92rem;
+      line-height:1.35;
+    }
+    .link-url{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(0,0,0,.10);
+      background: rgba(0,0,0,.03);
+      font-weight:800;
+      color: rgba(0,0,0,.78);
+      white-space:nowrap;
+    }
+    .link-url:hover{
+      background: rgba(0,0,0,.05);
+      color: rgba(0,0,0,.9);
+    }
+
+    .no-results{
+      display:none;
+      margin-top:14px;
+      border:1px dashed rgba(0,0,0,.18);
+      border-radius:18px;
+      padding:16px;
+      background: rgba(0,0,0,.02);
+      color: rgba(0,0,0,.70);
+    }
+
+    @media (max-width: 980px){
+      .res-hero-card{ grid-template-columns: 1fr; }
+      .res-filter-grid{ grid-template-columns: 1fr; }
+      .resources-grid{ grid-template-columns: 1fr; }
+      .res-hero-right{ min-height: 220px; }
+      .link-url{ width: fit-content; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="Illinois Coal Association Home">
+        <div class="logo" aria-hidden="true">
+          <img src="https://illinoiscoal.org/wp-content/uploads/2021/02/cropped-ICAlogo_2020_orange-768x362-1-1.png"
+               alt="Illinois Coal Association Logo" onerror="this.style.display='none'">
+        </div>
+        <div class="name">
+          <strong>Illinois Coal Association</strong>
+          <span>Incorporated under Illinois law in 1878</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="members.html">Members</a>
+        <a class="active" href="resources.html">Resources</a>
+        <a href="events.html">Events</a>
+        <a href="join.html">Join Us</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn link" href="tel:12175282092" title="Call">(217) 528-2092</a>
+        <a class="btn primary" href="join.html">Join Us</a>
+        <button class="hamburger" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO / HEADER (V2) -->
+  <section class="section tight page-hero-v2">
+    <div class="container">
+
+      <div class="res-hero-card reveal">
+        <div class="res-hero-left">
+          <div class="res-badge">
+            <span class="res-badge-dot"></span>
+            <span>Resources</span>
+            <span class="res-badge-sep">•</span>
+            <span>Government + Industry Links</span>
+          </div>
+
+          <h1 class="res-hero-title">Helpful links & trusted references</h1>
+          <p class="res-hero-sub">
+            Quick access to agencies, mining safety, energy dashboards, and coal/energy organizations —
+            organized for fast scanning.
+          </p>
+
+          <div class="res-hero-actions">
+            <a class="btn primary" href="#gov">Browse Government</a>
+            <a class="btn" href="#energy">Browse Industry</a>
+            <a class="btn secondary" href="join.html">Join ICA</a>
+          </div>
+
+          <div class="res-chips">
+            <span class="res-chip">🔎 Instant search</span>
+            <span class="res-chip">🧭 Categorized lists</span>
+            <span class="res-chip">↗ Opens in new tab</span>
+          </div>
+        </div>
+
+        <div class="res-hero-right" aria-label="Resources header image">
+          <img
+            src="https://illinoiscoal.org/wp-content/uploads/2021/02/worker-in-coal-mine-1536x1024-1.jpg"
+            alt="Illinois coal resources" onerror="this.style.display='none'">
+          <div class="res-hero-overlay"></div>
+
+          <div class="res-hero-float">
+            <div class="res-float-title">Quick jumps</div>
+            <div class="res-float-links">
+              <a class="res-float-link" href="#gov">🏛️ Government</a>
+              <a class="res-float-link" href="#energy">⚡ Energy & Industry</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FILTER BAR -->
+      <div class="res-filter-bar card reveal">
+        <div class="card-inner">
+          <div class="res-filter-grid">
+
+            <div class="res-control">
+              <label class="tiny"><strong>Search</strong></label>
+              <div class="res-search">
+                <span class="res-search-ic">🔎</span>
+                <input id="resSearch" class="input res-input" placeholder="Search resources (agency, keyword, URL...)">
+                <button class="res-clear" id="clearRes" type="button" aria-label="Clear search">✕</button>
+              </div>
+              <div class="tiny res-hint">Tip: Try “EPA”, “MSHA”, “Illinois”, “mining”.</div>
+            </div>
+
+            <div class="res-control">
+              <label class="tiny"><strong>Category</strong></label>
+              <div class="res-seg" role="tablist" aria-label="Resource category">
+                <button class="res-seg-btn active" type="button" data-cat="all">All</button>
+                <button class="res-seg-btn" type="button" data-cat="government">Government</button>
+                <button class="res-seg-btn" type="button" data-cat="industry">Industry</button>
+              </div>
+            </div>
+
+            <div class="res-control res-results">
+              <label class="tiny"><strong>Results</strong></label>
+              <div class="res-count">
+                <span class="res-count-dot"></span>
+                <span><span id="resCount">0</span> shown</span>
+              </div>
+              <div class="tiny res-hint">Links open in a new tab.</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="no-results" id="noResults">
+        <strong>No matches found.</strong>
+        <div style="margin-top:6px">Try a different keyword or switch category.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LISTS -->
+  <section class="section">
+    <div class="container">
+
+      <div class="resources-grid">
+
+        <!-- Government -->
+        <div class="card reveal" id="gov">
+          <div class="card-inner">
+            <div class="section-head">
+              <h2>Government Links</h2>
+              <span class="count-chip"><span class="res-count-dot" style="width:10px;height:10px;border-radius:99px"></span><span id="govCount">0</span></span>
+            </div>
+            <p style="color:rgba(0,0,0,.65); margin-top:6px">
+              State and federal agencies, mining oversight, and energy information.
+            </p>
+
+            <div class="link-list" id="govList"></div>
+          </div>
+        </div>
+
+        <!-- Industry -->
+        <div class="card reveal" id="energy">
+          <div class="card-inner">
+            <div class="section-head">
+              <h2>Other Coal & Energy Links</h2>
+              <span class="count-chip"><span class="res-badge-dot" style="width:10px;height:10px;border-radius:99px;box-shadow:none"></span><span id="indCount">0</span></span>
+            </div>
+            <p style="color:rgba(0,0,0,.65); margin-top:6px">
+              Coal and energy organizations, research groups, policy and industry references.
+            </p>
+
+            <div class="link-list" id="indList"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Optional CTA -->
+      <div class="card reveal" style="margin-top:18px;">
+        <div class="card-inner" style="display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+          <div>
+            <div class="kicker">Want to add a link?</div>
+            <h3 style="margin-top:8px; font-size:1.25rem; letter-spacing:-.02em;">Request an update to the resources directory</h3>
+            <p style="margin-top:8px; color:rgba(0,0,0,.65); max-width:720px;">
+              We can add publications, agency pages, or member resources (PDFs). Send ICA the title + URL and it can be listed here.
+            </p>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn primary" href="join.html">Join ICA</a>
+            <a class="btn" href="tel:12175282092">Call ICA</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <strong style="color:var(--text)">Illinois Coal Association</strong>
+          <p class="tiny" style="margin-top:8px">Modern static HTML redesign — ready to expand into a full site.</p>
+        </div>
+        <div>
+          <strong style="color:var(--text)">Navigation</strong>
+          <div style="margin-top:10px; display:grid; gap:8px">
+            <a href="members.html">Members</a>
+            <a href="resources.html">Resources</a>
+            <a href="events.html">Events</a>
+            <a href="join.html">Join Us</a>
+          </div>
+        </div>
+        <div>
+          <strong style="color:var(--text)">Contact</strong>
+          <div style="margin-top:10px; display:grid; gap:8px">
+            <a href="tel:12175282092">(217) 528-2092</a>
+            <span class="tiny">212 S. 2nd Street, Springfield, IL 62701</span>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:18px" class="tiny">© <span id="year"></span> Illinois Coal Association • All rights reserved</div>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
+
+  <!-- Page script (search + filter) -->
+  <script>
+    // Year (in case your app.js doesn't do it)
+    const y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
+
+    // ---------- DATA (edit these anytime) ----------
+    const resources = [
+      // Government
+      { cat: "government", title: "Illinois Department of Natural Resources", desc: "State agency overview and programs.", url: "https://dnr.illinois.gov/", icon: "🏛️" },
+      { cat: "government", title: "Office of Mines and Minerals (IDNR)", desc: "Mining information and oversight resources.", url: "https://dnr.illinois.gov/mines.html", icon: "⛏️" },
+      { cat: "government", title: "Illinois Environmental Protection Agency", desc: "Illinois EPA information and programs.", url: "https://epa.illinois.gov/", icon: "🌿" },
+      { cat: "government", title: "Illinois State Geological Survey", desc: "Geology, energy, and research resources.", url: "https://www.isgs.illinois.edu/", icon: "🧭" },
+      { cat: "government", title: "Advanced Coal & Energy Research Center (SIU)", desc: "Research center and publications.", url: "https://crc.siu.edu/", icon: "📚" },
+      { cat: "government", title: "Illinois Clean Coal Institute", desc: "Research and clean coal initiatives.", url: "https://icci.org/", icon: "⚡" },
+      { cat: "government", title: "State of Illinois", desc: "Official Illinois government website.", url: "https://www.illinois.gov/", icon: "🗺️" },
+      { cat: "government", title: "Illinois General Assembly", desc: "Legislation, bills, and ILGA information.", url: "https://www.ilga.gov/", icon: "📜" },
+      { cat: "government", title: "Mine Safety & Health Administration (MSHA)", desc: "Federal mine safety standards and guidance.", url: "https://www.msha.gov/", icon: "🦺" },
+      { cat: "government", title: "U.S. Energy Information Administration — Coal", desc: "Coal stats, reports, and data.", url: "https://www.eia.gov/coal/", icon: "📈" },
+      { cat: "government", title: "U.S. DOE — Fossil Energy (FECM)", desc: "Fossil energy information and programs.", url: "https://www.energy.gov/fecm", icon: "🏭" },
+      { cat: "government", title: "Midwest Geological Sequestration Consortium", desc: "Carbon storage research and regional info.", url: "https://www.sequestration.org/", icon: "🧪" },
+
+      // Industry / Other
+      { cat: "industry", title: "National Mining Association", desc: "Industry association and resources.", url: "https://nma.org/", icon: "⛏️" },
+      { cat: "industry", title: "Advance Illinois Manufacturing", desc: "Manufacturing advocacy in Illinois.", url: "http://aim-il.org/", icon: "🏗️" },
+      { cat: "industry", title: "FutureGen Industrial Alliance", desc: "Energy and innovation initiatives.", url: "https://futuregenalliance.org/", icon: "🚀" },
+      { cat: "industry", title: "Science & Public Policy Institute", desc: "Policy research and publications.", url: "https://scienceandpublicpolicy.org/", icon: "🧠" },
+      { cat: "industry", title: "Heartland Institute", desc: "Public policy organization.", url: "https://www.heartland.org/", icon: "🧩" },
+      { cat: "industry", title: "America’s Power", desc: "Power generation and reliability info.", url: "https://americaspower.org/", icon: "🔌" },
+      { cat: "industry", title: "Illinois Mining Institute", desc: "Mining institute and resources.", url: "https://www.illinoismininginstitute.org/", icon: "🪨" },
+      { cat: "industry", title: "American Coal Council", desc: "Coal industry association and events.", url: "https://www.americancoalcouncil.org/", icon: "🤝" },
+      { cat: "industry", title: "American Coal Foundation", desc: "Education and outreach resources.", url: "https://www.teachcoal.org/", icon: "🎓" },
+      { cat: "industry", title: "Jackson Kelly PLLC — Coal Blog", desc: "Legal blog related to coal topics.", url: "http://coal.jacksonkelly.com/", icon: "⚖️" },
+      { cat: "industry", title: "Mining Artifacts & History", desc: "History and mining artifacts directory.", url: "https://www.miningartifacts.org/", icon: "🏺" },
+      { cat: "industry", title: "Coal Miners Movement", desc: "Community and movement links.", url: "https://www.coalminersmovement.org/", icon: "👷" }
+    ];
+
+    // ---------- ELEMENTS ----------
+    const govList = document.getElementById("govList");
+    const indList = document.getElementById("indList");
+    const resCount = document.getElementById("resCount");
+    const govCount = document.getElementById("govCount");
+    const indCount = document.getElementById("indCount");
+    const noResults = document.getElementById("noResults");
+
+    const search = document.getElementById("resSearch");
+    const clearBtn = document.getElementById("clearRes");
+    const tabs = document.querySelectorAll(".res-seg-btn"); // ✅ updated selector
+
+    let activeCat = "all";
+
+    function normalize(s){ return (s || "").toLowerCase().trim(); }
+
+    function makeCard(item){
+      const a = document.createElement("a");
+      a.className = "link-card";
+      a.href = item.url;
+      a.target = "_blank";
+      a.rel = "noopener";
+
+      a.dataset.cat = item.cat;
+      a.dataset.text = normalize(item.title + " " + item.desc + " " + item.url);
+
+      a.innerHTML = `
+        <div class="link-meta">
+          <div class="link-ic">${item.icon || "🔗"}</div>
+          <div>
+            <div class="link-title">${item.title}</div>
+            <div class="link-sub">${item.desc || ""}</div>
+          </div>
+        </div>
+        <div class="link-url">Open ↗</div>
+      `;
+      return a;
+    }
+
+    function render(){
+      govList.innerHTML = "";
+      indList.innerHTML = "";
+
+      const q = normalize(search.value);
+      let shown = 0, shownGov = 0, shownInd = 0;
+
+      resources.forEach(item => {
+        const matchesCat = (activeCat === "all") ? true : item.cat === activeCat;
+        const matchesSearch = !q ? true : normalize(item.title + " " + item.desc + " " + item.url).includes(q);
+        if (!matchesCat || !matchesSearch) return;
+
+        const card = makeCard(item);
+        if (item.cat === "government") { govList.appendChild(card); shownGov++; }
+        else { indList.appendChild(card); shownInd++; }
+        shown++;
+      });
+
+      resCount.textContent = shown;
+      govCount.textContent = shownGov;
+      indCount.textContent = shownInd;
+
+      noResults.style.display = shown === 0 ? "block" : "none";
+    }
+
+    // Tabs
+    tabs.forEach(btn => {
+      btn.addEventListener("click", () => {
+        tabs.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        activeCat = btn.dataset.cat || "all";
+        render();
+      });
+    });
+
+    // Search + clear
+    function updateClear(){
+      clearBtn.style.display = search.value.trim() ? "inline-grid" : "none";
+    }
+    search.addEventListener("input", () => { render(); updateClear(); });
+    clearBtn.addEventListener("click", () => {
+      search.value = "";
+      search.focus();
+      updateClear();
+      render();
+    });
+
+    updateClear();
+    render();
+  </script>
+</body>
+</html>

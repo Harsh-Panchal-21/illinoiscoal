@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Illinois Coal Association | Join Us</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <div class="logo"><img src="https://illinoiscoal.org/wp-content/uploads/2021/02/cropped-ICAlogo_2020_orange-768x362-1-1.png" alt="Logo" onerror="this.style.display='none'"></div>
+        <div class="name"><strong>Illinois Coal Association</strong><span>Join Us</span></div>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="members.html">Members</a>
+        <a href="resources.html">Resources</a>
+        <a href="events.html">Events</a>
+        <a href="join.html">Join Us</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn link" href="tel:12175282092">(217) 528-2092</a>
+        <a class="btn primary" href="join.html">Join Us</a>
+        <button class="hamburger" id="menuBtn">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="kicker">Membership</div>
+      <div style="height:10px"></div>
+      <h1 style="font-size:clamp(2rem, 3vw, 2.7rem)">Join the Illinois Coal Association</h1>
+      <div style="height:10px"></div>
+      <p>Two categories: <strong>Company Membership</strong> and <strong>Associate Membership</strong>.</p>
+
+      <div style="height:18px"></div>
+      <div class="grid two-col">
+        <div class="card reveal"><div class="card-inner">
+          <div class="kicker">Company Members</div>
+          <div style="height:10px"></div>
+          <h3 style="font-size:1.15rem">Producers & operators</h3>
+          <p class="tiny" style="margin-top:8px">Organizations producing coal in Illinois and engaging in industry initiatives.</p>
+          <div style="height:14px"></div>
+          <span class="badge company">Company</span>
+        </div></div>
+
+        <div class="card reveal"><div class="card-inner">
+          <div class="kicker">Associate Members</div>
+          <div style="height:10px"></div>
+          <h3 style="font-size:1.15rem">Partners & suppliers</h3>
+          <p class="tiny" style="margin-top:8px">Businesses that support the industry with services, logistics, engineering, legal, etc.</p>
+          <div style="height:14px"></div>
+          <span class="badge associate">Associate</span>
+        </div></div>
+      </div>
+
+      <div style="height:18px"></div>
+      <div class="card reveal">
+        <div class="card-inner">
+          <div class="kicker">Request membership info</div>
+          <div style="height:10px"></div>
+          <h3 style="font-size:1.25rem">Tell us about your organization</h3>
+          <p class="tiny" style="margin-top:8px">Front-end form only — connect to PHP/email later.</p>
+
+          <div style="height:14px"></div>
+          <form onsubmit="event.preventDefault(); alert('Demo only. Connect to backend to send.');">
+            <div class="grid" style="grid-template-columns:1fr; gap:10px">
+              <input required placeholder="Organization name" style="padding:12px; border-radius:14px; border:1px solid rgba(2,6,23,.12); background:rgba(255,255,255,.9); outline:none">
+              <input required placeholder="Contact name" style="padding:12px; border-radius:14px; border:1px solid rgba(2,6,23,.12); background:rgba(255,255,255,.9); outline:none">
+              <input required type="email" placeholder="Email" style="padding:12px; border-radius:14px; border:1px solid rgba(2,6,23,.12); background:rgba(255,255,255,.9); outline:none">
+              <select required style="padding:12px; border-radius:14px; border:1px solid rgba(2,6,23,.12); background:rgba(255,255,255,.9); outline:none; font-weight:800">
+                <option value="" disabled selected>Select membership type</option>
+                <option>Company Membership</option>
+                <option>Associate Membership</option>
+              </select>
+              <textarea required rows="5" placeholder="Message" style="padding:12px; border-radius:14px; border:1px solid rgba(2,6,23,.12); background:rgba(255,255,255,.9); outline:none; resize:vertical"></textarea>
+              <button class="btn primary" type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div><strong style="color:var(--text)">Illinois Coal Association</strong><p class="tiny" style="margin-top:8px">Join page template.</p></div>
+        <div><strong style="color:var(--text)">Navigation</strong><div style="margin-top:10px; display:grid; gap:8px">
+          <a href="members.html">Members</a><a href="resources.html">Resources</a><a href="events.html">Events</a>
+        </div></div>
+        <div><strong style="color:var(--text)">Contact</strong><div style="margin-top:10px; display:grid; gap:8px">
+          <a href="tel:12175282092">(217) 528-2092</a><span class="tiny">212 S. 2nd Street, Springfield, IL 62701</span>
+        </div></div>
+      </div>
+      <div style="margin-top:18px" class="tiny">© <span id="year"></span> Illinois Coal Association • All rights reserved</div>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
