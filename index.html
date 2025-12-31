@@ -1,4 +1,653 @@
--- MOBILE DRAWER -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Illinois Coal Association | Home</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --bg2:#0b0f14;
+      --text:#0f172a;
+      --muted:#64748b;
+      --line:rgba(15,23,42,.12);
+
+      --white:#ffffff;
+      --glass:rgba(255,255,255,.08);
+      --glass2:rgba(255,255,255,.12);
+
+      --accent:#f97316;
+      --accent2:#fb923c;
+      --good:#22c55e;
+
+      --shadow: 0 16px 40px rgba(2,6,23,.20);
+      --radius:18px;
+
+      --container: 1200px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:#fff;
+      color:#0f172a;
+      overflow-x:hidden;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    .container{
+      max-width:var(--container);
+      margin:0 auto;
+      padding:0 20px;
+    }
+
+    /* =========================
+       NAV (transparent -> white on scroll)
+    ========================== */
+    .nav{
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:999;
+      background:rgba(10,15,20,.55);
+      backdrop-filter: blur(14px);
+      border-bottom:1px solid rgba(255,255,255,.10);
+      transition: background .25s ease, border-color .25s ease, box-shadow .25s ease;
+    }
+    .nav.scrolled{
+      background:rgba(255,255,255,.92);
+      border-bottom:1px solid rgba(15,23,42,.10);
+      box-shadow: 0 12px 30px rgba(2,6,23,.10);
+    }
+
+    .nav-inner{
+      height:74px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:260px;
+      color:#fff;
+      transition: color .2s ease;
+    }
+    .logo{
+      width:64px;
+      height:44px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:12px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      overflow:hidden;
+    }
+    .logo img{
+      width:60px;
+      height:auto;
+      object-fit:contain;
+      filter: drop-shadow(0 10px 24px rgba(0,0,0,.18));
+    }
+    .name strong{display:block;font-size:14px;line-height:1.05}
+    .name span{display:block;font-size:11px;color:rgba(255,255,255,.75);margin-top:3px; transition: color .2s ease}
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:22px;
+      color:rgba(255,255,255,.92);
+      font-weight:600;
+      font-size:14px;
+      transition: color .2s ease;
+    }
+    .nav-links a{
+      opacity:.92;
+      padding:10px 8px;
+      border-radius:10px;
+      transition:.2s ease;
+    }
+    .nav-links a:hover{
+      background:rgba(255,255,255,.10);
+      opacity:1;
+    }
+
+    .nav-cta{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:#fff;
+      transition: color .2s ease;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 16px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.10);
+      color:#fff;
+      font-weight:800;
+      font-size:14px;
+      transition:.2s ease;
+      cursor:pointer;
+      user-select:none;
+      line-height:1;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); background:rgba(255,255,255,.14)}
+    .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2)); border:none}
+    .btn.primary:hover{filter:brightness(1.05)}
+    .btn.secondary{background:rgba(255,255,255,.12)}
+    .btn.link{background:transparent;border:1px solid rgba(255,255,255,.18)}
+    .hamburger{
+      display:none;
+      width:44px;height:44px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.10);
+      color:#fff;
+      font-size:20px;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    /* nav scrolled colors */
+    .nav.scrolled .brand,
+    .nav.scrolled .nav-links,
+    .nav.scrolled .nav-links a,
+    .nav.scrolled .nav-cta{
+      color:#0f172a;
+    }
+    .nav.scrolled .name span{
+      color:rgba(15,23,42,.65);
+    }
+    .nav.scrolled .nav-links a:hover{
+      background:rgba(15,23,42,.06);
+    }
+    .nav.scrolled .btn.link{
+      background:transparent;
+      border:1px solid rgba(15,23,42,.15);
+      color:#0f172a;
+    }
+    .nav.scrolled .btn.secondary{
+      background:rgba(15,23,42,.06);
+      border:1px solid rgba(15,23,42,.12);
+      color:#0f172a;
+    }
+    .nav.scrolled .hamburger{
+      background:rgba(15,23,42,.06);
+      border:1px solid rgba(15,23,42,.12);
+      color:#0f172a;
+    }
+
+    /* mobile nav drawer */
+    .mobile-drawer{
+      position:fixed;
+      inset:74px 0 auto 0;
+      background:rgba(10,15,20,.92);
+      backdrop-filter: blur(14px);
+      border-bottom:1px solid rgba(255,255,255,.12);
+      transform: translateY(-120%);
+      transition:.25s ease;
+      z-index:998;
+    }
+    .nav.scrolled + .mobile-drawer{
+      background:rgba(255,255,255,.96);
+      border-bottom:1px solid rgba(15,23,42,.10);
+    }
+    .mobile-drawer.open{transform: translateY(0)}
+    .mobile-drawer .wrap{
+      padding:16px 20px 18px;
+      display:grid;
+      gap:10px;
+    }
+    .mobile-drawer a{
+      font-weight:800;
+      padding:12px 12px;
+      border-radius:12px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      color:#fff;
+    }
+    .nav.scrolled + .mobile-drawer a{
+      color:#0f172a;
+      background:rgba(15,23,42,.06);
+      border:1px solid rgba(15,23,42,.10);
+    }
+
+    /* =========================
+       HERO (FULL WIDTH SLIDER)
+       Fix: global overlay lighter, darkness only behind text card
+    ========================== */
+    .hero{
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+      padding-top:74px;
+      background:#05070b;
+    }
+
+    .hero-bg{
+      position:absolute;
+      inset:0;
+      z-index:0;
+    }
+    .hero-slide{
+      position:absolute;
+      inset:0;
+      background-size:cover;
+      background-position:center 25%;
+      opacity:0;
+      transition: opacity 1.25s ease-in-out;
+      transform: scale(1);
+    }
+    .hero-slide.active{opacity:1}
+    .hero-slide.zooming{animation: heroZoom 3.1s linear forwards}
+    @keyframes heroZoom{from{transform:scale(1)}to{transform:scale(1.06)}}
+
+    /* lighter global overlay so face/details visible */
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(900px 420px at 15% 30%, rgba(249,115,22,.10), transparent 65%),
+        linear-gradient(to bottom, rgba(0,0,0,.18), rgba(0,0,0,.28));
+      z-index:1;
+    }
+
+    .hero-grid{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns: 1fr .9fr;
+      gap:26px;
+      align-items:stretch;
+      padding:34px 0 30px;
+    }
+
+    .hero-card{
+      border-radius:var(--radius);
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      overflow:hidden;
+      position:relative;
+    }
+
+    /* local overlay ONLY behind text for readability */
+    .hero-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(135deg, rgba(10,15,20,.78), rgba(10,15,20,.55));
+      z-index:0;
+    }
+
+    .hero-left{
+      padding:28px;
+      color:#fff;
+      position:relative;
+      z-index:1;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:9px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.12);
+      font-size:12px;
+      font-weight:800;
+      color:rgba(255,255,255,.92);
+      letter-spacing:.2px;
+    }
+    .dot{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 0 4px rgba(249,115,22,.20);
+    }
+
+    .hero h1{
+      font-size:44px;
+      line-height:1.05;
+      margin:0;
+      letter-spacing:-.8px;
+      text-shadow: 0 10px 28px rgba(0,0,0,.35);
+    }
+    .hero p{
+      margin:0;
+      color:rgba(255,255,255,.88);
+      font-size:16px;
+      line-height:1.7;
+    }
+
+    .hero-actions{
+      margin-top:18px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .hero-meta{
+      margin-top:18px;
+      display:grid;
+      gap:10px;
+    }
+    .meta-item{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:14px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      color:rgba(255,255,255,.90);
+      font-weight:750;
+      font-size:13px;
+    }
+
+    .stats{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:12px;
+    }
+    .stat{
+      padding:12px;
+      border-radius:16px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .stat .num{
+      font-size:22px;
+      font-weight:1000;
+      letter-spacing:-.3px;
+    }
+    .stat .lbl{
+      margin-top:6px;
+      font-size:12px;
+      color:rgba(255,255,255,.78);
+      font-weight:700;
+    }
+
+    .hero-right{
+      border-radius:var(--radius);
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow: var(--shadow);
+      background:rgba(255,255,255,.06);
+      backdrop-filter: blur(14px);
+      min-height:360px;
+    }
+    /* show the current slide image inside right card WITHOUT blocking the main background */
+    .hero-right .right-bg{
+      position:absolute; inset:0;
+      background-size:cover;
+      background-position:center 25%;
+      filter:saturate(1.05) contrast(1.02);
+      transform:scale(1.03);
+    }
+    .hero-right .overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.70));
+    }
+    .hero-right .caption{
+      position:absolute;
+      left:16px;
+      right:16px;
+      bottom:16px;
+      padding:14px;
+      border-radius:16px;
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(12px);
+      color:#fff;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:flex-end;
+    }
+    .hero-right strong{font-size:14px}
+    .hero-right span{font-size:12px;color:rgba(255,255,255,.82)}
+
+    /* slider UI */
+    .hero-ui{
+      position:absolute;
+      left:0; right:0;
+      bottom:18px;
+      z-index:3;
+      pointer-events:none;
+    }
+    .hero-ui .container{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .dots{
+      display:flex;
+      gap:8px;
+      pointer-events:auto;
+    }
+    .dot-btn{
+      width:10px;height:10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.45);
+      background:rgba(255,255,255,.14);
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .dot-btn.active{
+      width:26px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      border-color:transparent;
+    }
+    .progress-wrap{
+      flex:1;
+      max-width:420px;
+      height:10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.14);
+      overflow:hidden;
+      pointer-events:none;
+    }
+    .progress{
+      height:100%;
+      width:0%;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      border-radius:999px;
+      transition: width .10s linear;
+    }
+
+    /* =========================
+       SECTIONS
+    ========================== */
+    .section{padding:70px 0;background:#fff}
+    .section.tight{padding:55px 0}
+
+    .grid{display:grid;gap:18px}
+    .two-col{grid-template-columns:1fr 1fr}
+
+    .kicker{
+      font-weight:1000;
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:rgba(15,23,42,.55);
+    }
+
+    h2{
+      margin:0;
+      font-size:32px;
+      letter-spacing:-.6px;
+      line-height:1.15;
+      color:#0f172a;
+    }
+    h3{margin:0;color:#0f172a;letter-spacing:-.2px}
+    p{margin:0}
+    .tiny{font-size:13px;color:rgba(15,23,42,.70);line-height:1.7}
+
+    .card{
+      border-radius:var(--radius);
+      background:#fff;
+      border:1px solid var(--line);
+      box-shadow:0 12px 30px rgba(2,6,23,.08);
+      overflow:hidden;
+    }
+    .card-inner{padding:22px}
+
+    .divider{height:1px;background:rgba(15,23,42,.10);margin:16px 0}
+
+    .feature{padding:12px 0}
+    .feature .head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .chip{
+      font-size:12px;
+      font-weight:900;
+      color:#0f172a;
+      background:rgba(249,115,22,.14);
+      border:1px solid rgba(249,115,22,.22);
+      padding:6px 10px;
+      border-radius:999px;
+      white-space:nowrap;
+    }
+
+    .about-highlight{
+      background:
+        radial-gradient(900px 260px at 15% 0%, rgba(249,115,22,.10), transparent 65%),
+        radial-gradient(900px 260px at 85% 20%, rgba(251,146,60,.09), transparent 60%),
+        #fff;
+      border-top:1px solid rgba(15,23,42,.06);
+    }
+
+    .impact-snapshot{
+      background:
+        radial-gradient(900px 260px at 10% 0%, rgba(249,115,22,.08), transparent 60%),
+        radial-gradient(900px 260px at 90% 10%, rgba(34,197,94,.08), transparent 60%),
+        #fff;
+      border-top:1px solid rgba(15,23,42,.06);
+      border-bottom:1px solid rgba(15,23,42,.06);
+    }
+    .impact-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+    .impact-actions{display:flex; gap:10px; flex-wrap:wrap}
+    .impact-number{
+      font-size:34px;
+      font-weight:1000;
+      letter-spacing:-.7px;
+      color:#0f172a;
+    }
+    .impact-stats{
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:14px;
+    }
+
+    /* FOOTER */
+    footer{
+      background:#0b0f14;
+      color:rgba(255,255,255,.86);
+      padding:44px 0;
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns:2fr 1fr 1.2fr;
+      gap:22px;
+      align-items:start;
+    }
+    footer a{color:rgba(255,255,255,.85)}
+    footer a:hover{color:#fff}
+    footer .tiny{color:rgba(255,255,255,.62)}
+
+    /* reveal */
+    .reveal{opacity:0; transform: translateY(14px); transition: .6s ease}
+    .reveal.show{opacity:1; transform:none}
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr; gap:16px}
+      .hero-right{min-height:280px}
+      .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .impact-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .footer-grid{grid-template-columns:1fr}
+      .nav-links{display:none}
+      .hamburger{display:inline-flex; align-items:center; justify-content:center}
+      .brand{min-width:auto}
+    }
+    @media (max-width: 520px){
+      .hero h1{font-size:34px}
+      .hero-left{padding:20px}
+      .card-inner{padding:18px}
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="Illinois Coal Association Home">
+        <div class="logo" aria-hidden="true">
+          <img src="https://illinoiscoal.org/wp-content/uploads/2021/02/cropped-ICAlogo_2020_orange-768x362-1-1.png" alt="Illinois Coal Association Logo" onerror="this.style.display='none'">
+        </div>
+        <div class="name">
+          <strong>Illinois Coal Association</strong>
+          <span>Incorporated under Illinois law in 1878</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="members.html">Members</a>
+        <a href="resources.html">Resources</a>
+        <a href="events.html">Events</a>
+        <a href="join.html">Join Us</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn link" href="tel:12175282092" title="Call">(217) 528-2092</a>
+        <a class="btn primary" href="join.html">Join Us</a>
+        <button class="hamburger" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE DRAWER -->
   <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile menu">
     <div class="wrap">
       <a href="index.html">Home</a>
@@ -9,3 +658,631 @@
       <a href="tel:12175282092">(217) 528-2092</a>
     </div>
   </div>
+
+  <!-- HERO (FULL WIDTH SLIDER) -->
+  <main class="hero hero-slider" id="top">
+
+    <!-- Background Slider -->
+    <div class="hero-bg" id="heroBg">
+      <div class="hero-slide active" style="background-image:url('https://illinoiscoal.org/wp-content/uploads/2021/02/worker-in-coal-mine-1536x1024-1.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('https://www.mcclatchy-newsroom.com/public/news/nation-world/national/j7mq6y/picture76983307/alternates/LANDSCAPE_1140/121012snLineCoalCars')"></div>
+      <div class="hero-slide" style="background-image:url('https://www.knighthawkcoal.com/images/hero-image-1b.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('https://kyivinsider.com/wp-content/uploads/2025/07/img_4408.jpeg')"></div>
+    </div>
+
+    <div class="container hero-grid">
+      <section class="hero-card reveal">
+        <div class="hero-left">
+          <div class="pill"><span class="dot"></span><span>Trade organization • Advocacy • Public relations</span></div>
+          <div style="height:14px"></div>
+          <h1>Promoting Illinois coal with a unified voice.</h1>
+          <div style="height:10px"></div>
+          <p>
+            The Illinois Coal Association represents the coal industry in Illinois in governmental affairs, public relations,
+            and related matters — helping members address issues affecting their interests together.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="join.html">Explore Membership</a>
+            <a class="btn secondary" href="resources.html">View Resources</a>
+            <a class="btn" href="members.html">Meet Our Members</a>
+          </div>
+
+          <div class="hero-meta">
+            <div class="meta-item"><span class="icon">📍</span><span>Springfield, Illinois</span></div>
+            <div class="meta-item"><span class="icon">🏛️</span><span>Government affairs support</span></div>
+            <div class="meta-item"><span class="icon">🤝</span><span>Member coordination & representation</span></div>
+          </div>
+
+          <div class="stats">
+            <div class="stat"><div class="num">$4.2B</div><div class="lbl">Annual economic impact</div></div>
+            <div class="stat"><div class="num">3,000</div><div class="lbl">Residents employed</div></div>
+            <div class="stat"><div class="num">$80K</div><div class="lbl">Average salary</div></div>
+            <div class="stat"><div class="num">13,000+</div><div class="lbl">Jobs created statewide</div></div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="hero-right reveal" aria-label="Hero image card">
+        <div class="right-bg" id="rightBg"></div>
+        <div class="overlay"></div>
+        <div class="caption">
+          <div>
+            <strong>Reliable energy, informed policy</strong><br/>
+            <span>Industry perspective + member advocacy</span>
+          </div>
+          <span class="pill" style="padding:7px 10px">
+            <span class="dot" style="background:var(--accent2)"></span>All-of-the-above
+          </span>
+        </div>
+      </aside>
+    </div>
+
+    <!-- slider UI: dots + progress -->
+    <div class="hero-ui">
+      <div class="container">
+        <div class="dots" id="heroDots" aria-label="Hero slider navigation"></div>
+        <div class="progress-wrap" aria-label="Slide progress">
+          <div class="progress" id="heroProgress"></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ABOUT ICA -->
+  <section class="section about-highlight">
+    <div class="container">
+      <div class="grid two-col">
+
+        <div class="reveal">
+          <div class="kicker">About Illinois Coal Association</div>
+          <div style="height:10px"></div>
+
+          <h2>Representing Illinois coal since 1878</h2>
+          <div style="height:12px"></div>
+
+          <p class="tiny">
+            The Illinois Coal Association (ICA) is a not-for-profit trade organization representing
+            coal producers and industry partners across the state. For more than a century,
+            ICA has served as a unified voice on legislative, regulatory, and public policy matters.
+          </p>
+
+          <div style="height:12px"></div>
+
+          <p class="tiny">
+            Our mission is to promote responsible coal production, protect Illinois jobs,
+            and ensure reliable, affordable energy for communities while supporting
+            innovation and environmental stewardship.
+          </p>
+
+          <div style="height:18px"></div>
+
+          <div style="display:flex; gap:12px; flex-wrap:wrap">
+            <a href="members.html" class="btn primary">Our Members</a>
+            <a href="join.html" class="btn secondary">Become a Member</a>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-inner">
+
+            <div class="kicker">What we do</div>
+            <div style="height:12px"></div>
+
+            <div class="grid" style="grid-template-columns:1fr; gap:14px">
+
+              <div class="feature">
+                <div class="head">
+                  <strong>Advocacy & Policy</strong>
+                  <span class="chip">Government</span>
+                </div>
+                <p class="tiny">
+                  Engage with lawmakers and agencies to represent the interests of Illinois coal producers
+                  and associated businesses.
+                </p>
+              </div>
+
+              <div class="feature">
+                <div class="head">
+                  <strong>Public Education</strong>
+                  <span class="chip">Outreach</span>
+                </div>
+                <p class="tiny">
+                  Provide fact-based information about coal’s role in the energy mix,
+                  economic development, and community impact.
+                </p>
+              </div>
+
+              <div class="feature">
+                <div class="head">
+                  <strong>Member Support</strong>
+                  <span class="chip">Members</span>
+                </div>
+                <p class="tiny">
+                  Coordinate industry collaboration, share resources, and support member engagement
+                  through meetings and events.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- IMPACT SNAPSHOT -->
+  <section class="section impact-snapshot">
+    <div class="container">
+
+      <div class="impact-head reveal">
+        <div>
+          <div class="kicker">Impact Snapshot</div>
+          <h2 style="margin-top:10px">Illinois coal’s economic contribution</h2>
+          <p class="tiny" style="margin-top:8px">
+            A quick, easy-to-scan summary of key figures and context.
+          </p>
+        </div>
+
+        <div class="impact-actions">
+          <a class="btn secondary" href="resources.html" style="color:#0f172a; background:#fff; border:1px solid rgba(15,23,42,.12)">View Publications</a>
+          <a class="btn primary" href="join.html">Join ICA</a>
+        </div>
+      </div>
+
+      <div class="grid impact-stats" style="margin-top:18px">
+        <div class="card reveal">
+          <div class="card-inner">
+            <div class="kicker">Annual Impact</div>
+            <div style="height:8px"></div>
+            <div class="impact-number">$4.2B</div>
+            <div class="tiny" style="margin-top:8px">Economic impact of Illinois coal production & generation.</div>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-inner">
+            <div class="kicker">Employment</div>
+            <div style="height:8px"></div>
+            <div class="impact-number">3,000</div>
+            <div class="tiny" style="margin-top:8px">Illinois residents employed by ICA members.</div>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-inner">
+            <div class="kicker">Avg Salary</div>
+            <div style="height:8px"></div>
+            <div class="impact-number">$80,000</div>
+            <div class="tiny" style="margin-top:8px">Average annual salary (reported estimate).</div>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-inner">
+            <div class="kicker">Jobs Created</div>
+            <div style="height:8px"></div>
+            <div class="impact-number">13,000+</div>
+            <div class="tiny" style="margin-top:8px">Coal mines and coal-fired plants created over 13,000 jobs.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid two-col" style="margin-top:18px">
+
+        <div class="card reveal">
+          <div class="card-inner">
+            <div class="kicker">Community Funding</div>
+            <h3 style="margin-top:10px; font-size:1.15rem">A major source of local tax revenue</h3>
+            <p style="margin-top:10px" class="tiny">
+              Coal mines and coal-fired power plants located throughout Illinois serve as a major source of tax revenue,
+              providing funding for schools and other community services.
+            </p>
+
+            <div class="divider"></div>
+
+            <div class="feature" style="padding:14px">
+              <div class="head">
+                <strong style="font-size:1rem">$244 million</strong>
+                <span class="chip">Tax Base</span>
+              </div>
+              <p class="tiny" style="margin-top:8px">
+                Estimated contribution tied to state/local funding support.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-inner">
+            <div class="kicker">Policy & Reliability</div>
+            <h3 style="margin-top:10px; font-size:1.15rem">Reliable energy needs an “all-of-the-above” approach</h3>
+            <p style="margin-top:10px" class="tiny">
+              As more intermittent sources come online, maintaining a balanced energy policy helps support affordability
+              and grid reliability.
+            </p>
+
+            <div style="height:14px"></div>
+            <div class="grid" style="grid-template-columns:1fr; gap:12px">
+              <div class="feature" style="padding:14px">
+                <div class="head">
+                  <strong>Competitive landscape</strong>
+                  <span class="chip">Regional</span>
+                </div>
+                <p class="tiny" style="margin-top:8px">
+                  Illinois mines compete with adjacent coal-producing states. Policy changes can influence production shifts
+                  and local economic outcomes.
+                </p>
+              </div>
+
+              <div class="feature" style="padding:14px">
+                <div class="head">
+                  <strong>Tax & cost context</strong>
+                  <span class="chip">Policy</span>
+                </div>
+                <p class="tiny" style="margin-top:8px">
+                  Coal sold in-state is subject to a 6.25% sales tax. Discussions around additional taxation can impact jobs,
+                  the tax base, and local communities.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="tiny reveal" style="margin-top:14px">
+        Source: West Virginia University College of Business and Economics
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MISSION + LEADERSHIP -->
+  <section class="section">
+    <div class="container">
+      <div class="grid two-col">
+
+        <div class="card reveal">
+          <div class="card-inner">
+            <div class="kicker">Mission</div>
+            <div style="height:10px"></div>
+            <h2>Our mission is simple: represent, educate, and advocate.</h2>
+            <div style="height:10px"></div>
+            <p class="tiny">
+              ICA represents Illinois coal producers and partners through effective advocacy, clear public communication,
+              and member-driven leadership — supporting jobs, economic growth, and reliable energy.
+            </p>
+
+            <div style="height:14px"></div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap">
+              <span class="pill" style="color:#0f172a; background:rgba(249,115,22,.12); border:1px solid rgba(249,115,22,.18)">
+                <span class="dot" style="background:var(--accent)"></span>Advocacy
+              </span>
+              <span class="pill" style="color:#0f172a; background:rgba(251,146,60,.10); border:1px solid rgba(251,146,60,.18)">
+                <span class="dot" style="background:var(--accent2)"></span>Reliability
+              </span>
+              <span class="pill" style="color:#0f172a; background:rgba(34,197,94,.10); border:1px solid rgba(34,197,94,.18)">
+                <span class="dot" style="background:var(--good)"></span>Jobs & Communities
+              </span>
+              <span class="pill" style="color:#0f172a; background:rgba(139,92,246,.10); border:1px solid rgba(139,92,246,.18)">
+                <span class="dot" style="background:#8b5cf6"></span>Education
+              </span>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="grid" style="grid-template-columns:1fr 1fr; gap:12px">
+              <div class="feature">
+                <div class="head">
+                  <strong>Policy Support</strong>
+                  <span class="chip">Government</span>
+                </div>
+                <p class="tiny">Track legislation, support members, and provide an informed industry voice.</p>
+              </div>
+              <div class="feature">
+                <div class="head">
+                  <strong>Industry Resources</strong>
+                  <span class="chip">Resources</span>
+                </div>
+                <p class="tiny">Fact sheets, publications, and updates in one organized hub.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-inner">
+            <div class="kicker">Leadership</div>
+            <div style="height:10px"></div>
+            <h2>Board & executive leadership</h2>
+            <div style="height:10px"></div>
+            <p class="tiny">Quick preview — you can expand this into a full Leadership page later.</p>
+
+            <div style="height:14px"></div>
+
+            <div class="grid" style="grid-template-columns:1fr; gap:12px">
+              <div class="feature" style="padding:14px; border:1px solid rgba(15,23,42,.10); border-radius:16px; background:#fff">
+                <div class="head">
+                  <div>
+                    <strong style="display:block">Alyssa Harre</strong>
+                    <span class="tiny">Board Chairperson</span>
+                  </div>
+                  <span class="pill" style="padding:7px 10px; color:#0f172a; background:rgba(251,146,60,.10); border:1px solid rgba(251,146,60,.18)">
+                    <span class="dot" style="background:var(--accent2)"></span>Chair
+                  </span>
+                </div>
+                <p class="tiny" style="margin-top:8px">
+                  Director of External Affairs and Organizational Strategy, Prairie State Generating Company.
+                </p>
+              </div>
+
+              <div class="feature" style="padding:14px; border:1px solid rgba(15,23,42,.10); border-radius:16px; background:#fff">
+                <div class="head">
+                  <div>
+                    <strong style="display:block">Nick Williams</strong>
+                    <span class="tiny">President</span>
+                  </div>
+                  <span class="pill" style="padding:7px 10px; color:#0f172a; background:rgba(249,115,22,.10); border:1px solid rgba(249,115,22,.18)">
+                    <span class="dot" style="background:var(--accent)"></span>President
+                  </span>
+                </div>
+                <p class="tiny" style="margin-top:8px">
+                  Leads operations and coordinates relations between the industry and state agencies.
+                </p>
+              </div>
+            </div>
+
+            <div style="height:12px"></div>
+            <div style="display:flex; gap:12px; flex-wrap:wrap">
+              <a class="btn secondary" href="members.html" style="color:#0f172a; background:#fff; border:1px solid rgba(15,23,42,.12)">View Members</a>
+              <a class="btn" href="resources.html" style="color:#0f172a; background:#fff; border:1px solid rgba(15,23,42,.12)">Leadership Resources</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EXISTING SECTIONS -->
+  <section class="section tight">
+    <div class="container">
+      <div class="grid two-col">
+
+        <div class="card reveal">
+          <div class="card-inner">
+            <div class="kicker">About ICA</div>
+            <div style="height:10px"></div>
+            <h2>Built on legacy. Focused on today.</h2>
+            <div style="height:10px"></div>
+            <p class="tiny">
+              We support members through coordinated representation and industry engagement—advancing policy,
+              education, and public understanding.
+            </p>
+            <div class="divider"></div>
+            <div class="grid" style="grid-template-columns:1fr 1fr; gap:12px">
+              <div class="feature">
+                <div class="head"><strong>Advocacy</strong><span class="chip">Policy</span></div>
+                <p class="tiny">A unified voice on legislative and regulatory topics impacting Illinois coal.</p>
+              </div>
+              <div class="feature">
+                <div class="head"><strong>Public Relations</strong><span class="chip">Outreach</span></div>
+                <p class="tiny">Clear messaging, facts, and community engagement for stakeholders.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-inner">
+            <div class="kicker">Explore</div>
+            <div style="height:10px"></div>
+            <h2>Find what you need fast.</h2>
+            <div style="height:10px"></div>
+            <p class="tiny">Modern navigation, clean pages, and a searchable membership directory.</p>
+            <div style="height:16px"></div>
+
+            <div class="grid" style="grid-template-columns:1fr; gap:12px">
+              <a class="btn" href="members.html" style="color:#0f172a; background:#fff; border:1px solid rgba(15,23,42,.12)">Browse Members →</a>
+              <a class="btn" href="resources.html" style="color:#0f172a; background:#fff; border:1px solid rgba(15,23,42,.12)">Resources & Publications →</a>
+              <a class="btn" href="events.html" style="color:#0f172a; background:#fff; border:1px solid rgba(15,23,42,.12)">Events & Meetings →</a>
+              <a class="btn secondary" href="join.html" style="color:#0f172a; background:rgba(249,115,22,.08); border:1px solid rgba(249,115,22,.18)">Join the Association →</a>
+            </div>
+
+            <div style="height:14px"></div>
+            <div class="pill" style="color:#0f172a; background:rgba(34,197,94,.08); border:1px solid rgba(34,197,94,.18)">
+              <span class="dot" style="background:var(--good)"></span><span>Mobile-first design</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <strong style="color:#fff">Illinois Coal Association</strong>
+          <p class="tiny" style="margin-top:8px">Modern static HTML redesign — ready to expand into a full site.</p>
+        </div>
+        <div>
+          <strong style="color:#fff">Navigation</strong>
+          <div style="margin-top:10px; display:grid; gap:8px">
+            <a href="members.html">Members</a>
+            <a href="resources.html">Resources</a>
+            <a href="events.html">Events</a>
+            <a href="join.html">Join Us</a>
+          </div>
+        </div>
+        <div>
+          <strong style="color:#fff">Contact</strong>
+          <div style="margin-top:10px; display:grid; gap:8px">
+            <a href="tel:12175282092">(217) 528-2092</a>
+            <span class="tiny">212 S. 2nd Street, Springfield, IL 62701</span>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:18px" class="tiny">© <span id="year"></span> Illinois Coal Association • All rights reserved</div>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // NAV: transparent -> white on scroll
+    const nav = document.querySelector('.nav');
+    function handleNavScroll(){
+      if(!nav) return;
+      const scrolled = window.scrollY > 20;
+      nav.classList.toggle('scrolled', scrolled);
+    }
+    window.addEventListener('scroll', handleNavScroll, { passive:true });
+    handleNavScroll();
+
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+
+    if(menuBtn && mobileDrawer){
+      menuBtn.addEventListener('click', () => {
+        const isOpen = mobileDrawer.classList.toggle('open');
+        menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+    }
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting) e.target.classList.add('show');
+      });
+    }, {threshold:.12});
+    reveals.forEach(r => io.observe(r));
+
+    // ===========================
+    // HERO SLIDER (3s, dots, progress, pause)
+    // ===========================
+    const slides = Array.from(document.querySelectorAll('.hero-slide'));
+    const dotsWrap = document.getElementById('heroDots');
+    const progress = document.getElementById('heroProgress');
+    const hero = document.querySelector('.hero');
+    const rightBg = document.getElementById('rightBg');
+
+    const SLIDE_MS = 3000;
+    const TICK_MS = 50;
+
+    let idx = 0;
+    let timer = null;
+    let progressTimer = null;
+    let elapsed = 0;
+    let paused = false;
+
+    function slideUrl(i){
+      const style = slides[i].getAttribute('style') || '';
+      const match = style.match(/url\(['"]?(.*?)['"]?\)/i);
+      return match ? match[1] : '';
+    }
+
+    function syncRightCard(){
+      if(!rightBg || !slides.length) return;
+      const url = slideUrl(idx);
+      rightBg.style.backgroundImage = url ? `url('${url}')` : '';
+    }
+
+    function buildDots(){
+      if(!dotsWrap) return;
+      dotsWrap.innerHTML = '';
+      slides.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.className = 'dot-btn' + (i === idx ? ' active' : '');
+        b.setAttribute('aria-label', `Go to slide ${i+1}`);
+        b.addEventListener('click', () => goTo(i, true));
+        dotsWrap.appendChild(b);
+      });
+    }
+
+    function setDotsActive(){
+      if(!dotsWrap) return;
+      Array.from(dotsWrap.children).forEach((d, i) => {
+        d.classList.toggle('active', i === idx);
+      });
+    }
+
+    function setActiveSlide(newIndex){
+      slides.forEach((s, i) => {
+        s.classList.toggle('active', i === newIndex);
+        s.classList.remove('zooming');
+      });
+      slides[newIndex].classList.add('zooming');
+      idx = newIndex;
+      setDotsActive();
+      syncRightCard();
+    }
+
+    function startTimers(){
+      stopTimers();
+      elapsed = 0;
+      if(progress) progress.style.width = '0%';
+
+      progressTimer = setInterval(() => {
+        if(paused) return;
+        elapsed += TICK_MS;
+        const pct = Math.min(100, (elapsed / SLIDE_MS) * 100);
+        if(progress) progress.style.width = pct + '%';
+      }, TICK_MS);
+
+      timer = setInterval(() => {
+        if(paused) return;
+        next();
+      }, SLIDE_MS);
+    }
+
+    function stopTimers(){
+      if(timer) clearInterval(timer);
+      if(progressTimer) clearInterval(progressTimer);
+      timer = null;
+      progressTimer = null;
+    }
+
+    function next(){
+      const nextIndex = (idx + 1) % slides.length;
+      setActiveSlide(nextIndex);
+      startTimers();
+    }
+
+    function goTo(i){
+      setActiveSlide(i);
+      startTimers();
+    }
+
+    // Pause on hover
+    if(hero){
+      hero.addEventListener('mouseenter', () => { paused = true; });
+      hero.addEventListener('mouseleave', () => { paused = false; });
+    }
+
+    // Pause when tab hidden
+    document.addEventListener('visibilitychange', () => {
+      paused = document.hidden ? true : false;
+    });
+
+    // init
+    if(slides.length){
+      buildDots();
+      setActiveSlide(0);
+      startTimers();
+    }
+  </script>
+
+</body>
+</html>
